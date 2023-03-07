@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 // 登录
-const login = () => import(/* webpackChunkName: "about" */ "./views/login.vue");
+const login = () => import(/* webpackChunkName: "about" */ "./views/login");
 
 Vue.use(Router);
 
