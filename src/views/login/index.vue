@@ -2,11 +2,11 @@
   <div class="login-container">
     <el-card class="box-card">
       <el-form :model="loginForm" :rules="loginRules" class="demo-form-inline">
-        <el-form-item label="账号" prop="userName">
-          <el-input v-model="loginForm.userName" placeholder="请输入账号" />
+        <el-form-item label="账号" prop="mobile">
+          <el-input v-model="loginForm.mobile" placeholder="请输入账号" />
         </el-form-item>
-        <el-form-item label="密码" prop="passWord">
-          <el-input v-model="loginForm.passWord" type="password" show-password placeholder="请输入密码"> </el-input>
+        <el-form-item label="密码" prop="password">
+          <el-input v-model="loginForm.password" type="password" show-password placeholder="请输入密码"> </el-input>
         </el-form-item>
         <el-form-item>
           <el-button class="onSubmit" type="primary" @click="handleLogin">登录</el-button>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { login } from '../../api/user.js'
 export default {
   name: '',
   components: {},
@@ -24,13 +25,13 @@ export default {
     return {
       // 登录用户
       loginForm: {
-        userName: 'admin',
-        passWord: '1234567'
+        mobile: '13800000002',
+        password: '123456'
       },
       // 校验规则
       loginRules: {
-        userName: [{ required: true, trigger: 'blur', message: '请输入正确的账号' }],
-        passWord: [
+        mobile: [{ required: true, trigger: 'blur', message: '请输入正确的账号' }],
+        password: [
           { required: true, message: '请输入正确的密码', trigger: 'blur' },
           { min: 3, max: 8, message: '最小3最大5', trigger: 'blur' }
         ]
@@ -42,8 +43,10 @@ export default {
   watch: {},
   created() {},
   methods: {
-    handleLogin() {
+    async handleLogin() {
       console.log(this.loginForm)
+      const data = await login(this.loginForm)
+      console.log(data)
     }
   }
 }
