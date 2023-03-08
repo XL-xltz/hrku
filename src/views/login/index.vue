@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import { login } from '../../api/user.js'
+import { mapActions } from 'vuex'
 export default {
-  name: '',
+  name: 'login',
   components: {},
   data() {
     return {
@@ -43,9 +43,12 @@ export default {
   watch: {},
   created() {},
   methods: {
+    ...mapActions(['user/login']),
     handleLogin() {
       this.$refs.loginForm.validate(async valid => {
-        const data = await login(this.loginForm)
+        if (valid) {
+          this['user/login'](this.loginForm)
+        }
       })
     }
   }

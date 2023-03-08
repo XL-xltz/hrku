@@ -1,13 +1,18 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
+import store from '../store'
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
 })
-// service.interceptors.request.use(
-
-// )
+service.interceptors.request.use(config => {
+  if (store.state.token) {
+    // 如果token存在 注入token
+    config.headers['Authorization'] = `Bearer ${store.getters.token}`
+  }
+  return config
+})
 service.interceptors.response.use(response => {
   const { success, message, data } = response.data
   if (success) {
