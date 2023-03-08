@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-card class="box-card">
-      <el-form :model="loginForm" :rules="loginRules" class="demo-form-inline">
+      <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="demo-form-inline">
         <el-form-item label="账号" prop="mobile">
           <el-input v-model="loginForm.mobile" placeholder="请输入账号" />
         </el-form-item>
@@ -43,10 +43,10 @@ export default {
   watch: {},
   created() {},
   methods: {
-    async handleLogin() {
-      console.log(this.loginForm)
-      const data = await login(this.loginForm)
-      console.log(data)
+    handleLogin() {
+      this.$refs.loginForm.validate(async valid => {
+        const data = await login(this.loginForm)
+      })
     }
   }
 }
