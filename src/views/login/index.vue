@@ -47,7 +47,8 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(async valid => {
         if (valid) {
-          this['user/login'](this.loginForm)
+          await this['user/login'](this.loginForm)
+          await this.$router.push('/')
         }
       })
     }
