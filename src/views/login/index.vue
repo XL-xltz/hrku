@@ -10,6 +10,7 @@
         </el-form-item>
         <el-form-item>
           <el-button class="onSubmit" type="primary" @click="handleLogin">登录</el-button>
+          <el-button class="onSubmit" type="primary" @click="getUserInfo">测试</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -18,6 +19,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { userInfo } from '../../api/user'
 export default {
   name: 'login',
   components: {},
@@ -51,6 +53,10 @@ export default {
           await this.$router.push('/')
         }
       })
+    },
+    async getUserInfo() {
+      const res = await userInfo()
+      console.log(res)
     }
   }
 }

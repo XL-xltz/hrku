@@ -7,9 +7,10 @@ const service = axios.create({
   timeout: 5000
 })
 service.interceptors.request.use(config => {
-  if (store.state.token) {
+  const token = store.getters.token
+  if (token) {
     // 如果token存在 注入token
-    config.headers['Authorization'] = `Bearer ${store.getters.token}`
+    config.headers['Authorization'] = `Bearer ${token}`
   }
   return config
 })

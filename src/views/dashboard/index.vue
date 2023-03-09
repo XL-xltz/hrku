@@ -1,10 +1,13 @@
 <template>
   <div>
-    dashboard 首页
+    <div class="name">
+      <span>name:</span>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: '',
   components: {},
@@ -14,8 +17,16 @@ export default {
   computed: {},
   filters: {},
   watch: {},
-  created() {},
-  methods: {}
+  updated() {},
+  created() {
+    this.getUserInfo()
+  },
+  methods: {
+    ...mapActions(['user/userInfo']),
+    async getUserInfo() {
+      await this['user/userInfo']()
+    }
+  }
 }
 </script>
 
