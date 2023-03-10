@@ -11,7 +11,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './styles/index.scss'
 
 // 路由守卫
-// import './permission'
+import './permission'
 
 Vue.use(ElementUI)
 

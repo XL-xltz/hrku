@@ -1,7 +1,5 @@
 <template>
   <div>
-    layout 组件 用来布局一些侧边栏等
-    <!-- appmian 为 主页面 -->
     <AppMain />
   </div>
 </template>
